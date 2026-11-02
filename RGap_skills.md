@@ -1,6 +1,6 @@
 ---
 name: rgap-skills
-version: "1.1.0"
+version: "1.3.0"
 description: >-
   Evidence-first skill for discovering, testing, writing, and critically reviewing
   scientific research gaps and research justifications. Optimized for original
@@ -565,3 +565,103 @@ Reject or narrow the candidate gap when the answer to (4) cannot resolve (2), or
 **Better *candidate* scientific framing (not a verified novelty claim):** “For a defined set of statin-related chemical series, it remains to be established whether specific peripheral modifications alter the modeled binding modes and conformational dynamics of HMG-CoA reductase relative to appropriate reference compounds.” This statement must still be checked against the real literature and matched to a design that can make the comparison.
 
 **Key lesson for the skill:** Published Introductions are training examples, not authorities on their own novelty. Extract their chain of justification, test the weakest link, and enforce precise alignment among **literature evidence → unresolved question → comparison/measurement → warranted conclusion**.
+
+## 18. Scope-proportionate review: avoid perfectionism (2026-11-02 update)
+
+**Why added:** Reading published QSAR work shows that papers need not solve every associated biological, methodological, and translational problem. Assess scientific contribution against the **paper's actual stated question and claim level**, not an idealized comprehensive drug-discovery program.
+
+### 18.1 The scope fidelity rule
+
+Before recommending any new experiment, split concerns into three categories:
+
+- **Validity-critical:** a demonstrated error, leakage, incorrect endpoint or analysis, or missing information that prevents evaluating a central claim. Remedy or narrow the claim.
+- **Claim-dependent strengthening:** an analysis required only if the paper makes a particular comparative, novel-scaffold, mechanistic, or prospective claim. If that claim is absent, do not demand the analysis.
+- **Future research:** worthwhile extensions (other species, prospective assays, docking, molecular dynamics, experimental validation, multi-target profiling, new scaffolds) that lie outside the present objective. Acknowledge as optional future work, **not a defect or submission prerequisite**.
+
+If a manuscript develops a pathogen-specific QSAR model, it does *not* automatically promise to prove that it outperforms pooled-species models. A species-specific dataset definition can itself be a sound design choice. Assess the manuscript for the question it poses and outcomes it measures. Comparative superiority requires a direct benchmark only if comparative superiority is claimed.
+
+### 18.2 What the published examples actually support
+
+1. **Explainable COX-2 QSAR (Pharmaceuticals, 2026), DOI 10.3390/ph19050698.** Published original research with fingerprints, ML validation, SHAP, applicability-domain reasoning and a web app. Prospective biological confirmation and multi-target selectivity are not prerequisites to its stated retrospective predictive contribution. The authors describe 3D descriptors and multi-target modeling as future work. Source: https://www.mdpi.com/1424-8247/19/5/698 (full HTML inspected, 2026-11-02).
+2. **Wang et al., Molecular Diversity (2024), DOI 10.1007/s11030-024-10914-9.** H. pylori urease ensemble modeling, chemical-space and activity-cliff analysis and proposed hydroxamic acid derivatives. In vitro/in vivo confirmation is expressly future work; its absence does not mean their in-silico design question was not studied. Source: https://pubmed.ncbi.nlm.nih.gov/39020133/ (abstract and bibliographic record inspected; do not claim full-text review).
+3. **Zavadskaya et al., Journal of Cheminformatics (2025), DOI 10.1186/s13321-025-00998-2.** QSAR and reinforcement learning directed at Syk inhibitor design, with task-specific evaluation and supplementary analyses. One methodological scope is not a mandate for every QSAR paper. Source: https://link.springer.com/article/10.1186/s13321-025-00998-2 (article metadata and sections searched; complete full-text audit not claimed).
+
+These are **examples of published scope**, not proof that any particular user's pipeline, numbers, or conclusions are correct. Published papers vary in methodological strength; publication is not a substitute for checking validity.
+
+### 18.3 Required verdict style for completed manuscripts
+
+Start with the research question actually stated. Then provide:
+
+1. **Answered within stated scope:** what the results support.
+2. **Validity-critical issue, if any:** exactly what is wrong or unverified and why it threatens a central inference, citing manuscript section/table/figure; distinguish a suspected risk from a confirmed defect.
+3. **Claim-language refinement, if needed:** narrow overclaims before proposing new computation.
+4. **Optional future work:** mention sparingly, do not convert to a condition for publication, dissertation, or project acceptance.
+
+Do not issue a checklist of every possible method as a default. Do not punish a study for not having prospective validation if its stated conclusion is retrospective, or for not testing cross-species transfer when it models one specified pathogen. A method is necessary only when the **study's inference** requires it.
+
+### 18.4 MSc dissertation application
+
+Evaluate whether the stated research question is meaningful, answered with suitable evidence, sufficiently substantial for the institution's requirements, and coherently written. An existing preprint may be a dissertation output if allowed by institutional rules and correctly acknowledged. Do not invent a second research question or prescribe a new project merely because further questions remain.
+
+
+
+## 19. Applied scope audit: EGCG–radiation-induced skin injury manuscript (unpublished user draft, 2026-11-02)
+
+**Status:** Case study from the user's supplied `EGCG_1.zip` (`main.tex` and figures), not a published-paper precedent. Use it to practice scope fidelity; do not cite as published evidence.
+
+**Actual research contribution:** Integration of reported EGCG-associated and radiation-induced skin injury targets with human skin transcriptomic evidence, PPI topology, enrichment and ligand-guided docking. The paper reports 142 EGCG targets, 194 RISI targets, 32 intersections, seven prioritized genes, and four structurally suitable docked proteins. The independent GEO dataset supports radiation responsiveness of BAX and CDKN1A, not direct EGCG engagement. A published randomized clinical trial of topical EGCG for radiation dermatitis (Zhao et al., JAMA Dermatology 2022, DOI 10.1001/jamadermatol.2022.1736) provides efficacy context but does not establish the manuscript's proposed molecular mechanism.
+
+**Scope-aligned verdict:** Integrative target prioritization and plausible mechanisms constitute a bounded in-silico question. Do not require experiments, comprehensive proteomics, prospective clinical work, or MD just to allow the study to report a computational hypothesis. Require causal language to remain conditional. Distinguish a high-scoring STRING interaction or a successful redocking RMSD from demonstrated direct EGCG target engagement.
+
+**Actual manuscript-consistency issues, not aspirational additions:**
+
+- `main.tex` begins at `\setcounter{section}{1}` and Section 2; no Introduction or Abstract is present in the supplied export. This is a completeness issue if the export is intended as a full submission, not scientific evidence that the study is inadequate.
+- The Methods state four protein–EGCG systems and co-crystal controls were each subjected to three 100 ns GROMACS simulations and MM/PBSA or MM/GBSA analyses, yet the supplied Results contain no MD trajectories, replicate stability results, binding-energy tables or uncertainty outputs. **Do not treat these simulations as independently verified or report them as completed study evidence.** Align Methods with actual work or provide the existing results; this is a claim/reporting consistency issue, not a demand to add MD.
+- In the AKT1 docking interaction prose, “15 atom-level interaction records” are claimed but the enumerated 7 hydrophobic + 7 hydrogen-bond records total 14. Check the original PLIP output before correcting the manuscript.
+- Figures referenced by `\includegraphics` are present in the submitted ZIP. Presence of image files does not certify underlying numerical analyses.
+
+**Skill lesson:** A reviewer should identify the **minimum sufficient evidence for the declared claim** and actual contradictions within the manuscript. Never recommend prospective validation or another computational layer by default. When biological benefit is already reported by prior original trials, a follow-up mechanistic hypothesis should not claim to discover that benefit anew.
+
+
+## 20. Kaya (2026) case study — a justified methodological integration gap (2026-11-02 update)
+
+**Primary source:** Kaya, A. O. (2026). *Interpretable machine learning-driven QSAR modeling for coagulation factor X inhibitors: from molecular descriptors to predictive potency*. *Journal of Computer-Aided Molecular Design*, 40, article 53. https://doi.org/10.1007/s10822-025-00758-2. **Publication year is 2026**, although the DOI includes `025` and the manuscript was submitted in 2025.
+
+### Why this example changes the skill's practical emphasis
+
+The Introduction accepts earlier 3D-QSAR and ML results rather than arguing that FXa QSAR or machine learning are new. Its rhetorical transition is: **established modeling progress → identifiable limitations in prior work → consequences for the usefulness of predictions → integrated response with a bounded purpose.** The contribution is methodological *integration*, not discovery of a previously untouched target or a fundamentally novel algorithm.
+
+### Four limitation-to-consequence chains presented by the author
+
+1. **Relatively small or chemically narrow prior datasets** → potentially weaker generalization across chemical space → rationale for broad curated coverage.
+2. **Regression and classification often treated separately** → less complementary information about continuous potency and activity classes → rationale for modeling both, where distinct tasks actually help the intended decision.
+3. **Inadequate descriptor-level interpretation** → prediction without sufficiently transparent feature-level explanation → rationale for interpretable analysis (e.g., SHAP), without treating SHAP as direct mechanistic proof.
+4. **Weak or missing applicability-domain assessment** → uncertain reliability of virtual-screening predictions → rationale for an explicit prediction domain and cautious interpretation outside it.
+
+**Crucial distinction:** These are *the author's literature-level assertions*. Before importing any into a different project's Introduction, cross-check the original studies being criticized and document which particular study supports each statement. A polished published Introduction is a model of argumentation, **not automatically conclusive proof** that all its generalizations about prior literature hold.
+
+### Mandatory lesson: methodological gaps can be legitimate scientific research gaps
+
+Do **not** demand a new biological target, a new cross-target selectivity task, a previously unused algorithm, or a novel mechanism when the literature supports a narrower **evidence-based modeling limitation**. A feasible integration or evaluation study may be justified if the limitations and their practical consequences are established and its design remedies them. Conversely, the mere combination of regression, classification, SHAP, molecular docking, external validation, or a scaffold split does **not** itself constitute a gap.
+
+Before approving this category of gap, require:
+
+- **Earlier achievement:** Name the concrete published models, compounds, endpoints, and results that already exist; do not erase prior work.
+- **Specific limitation:** Attribute the limitation to identifiable original studies and verify it against their methods/results.
+- **Consequence:** Explain exactly how the limitation affects potency estimation, chemical-space extrapolation, rank ordering, interpretation, or the proposed use case.
+- **Proportionate remedy:** Show how the proposed design directly addresses the documented limitations; do not bolt on unrelated biological questions.
+- **Contribution boundary:** Distinguish improved retrospective assessment or integrated computational decision support from experimentally established mechanism, real-world prospective performance, or clinical relevance.
+
+### Example of the reasoning structure (not a ready-made claim for another target)
+
+> Earlier QSAR and machine-learning investigations demonstrated that molecular features can predict inhibitory activity of [target] under the studied datasets and validation settings [cite specific original papers]. However, [specific documented restriction in chemical coverage/model interpretability/prediction reliability] limits [specific scientific or decision-oriented inference]. It therefore remains uncertain [narrow question the study can test]. This study evaluates [corresponding well-matched approach] to determine [bounded measurable contribution].
+
+**Prohibited shortcut:** Replace 'FXa' with 'FXIa', 'FIXa', or another target and reuse Kaya's limitations without independently checking that target's literature. Likewise, do not insist FXIa versus plasma kallikrein selectivity must be the gap solely because it sounds more biological.
+
+### Interpretability discipline
+
+Explainable/interpretable ML provides *model-level attribution* conditional on dataset, representation, feature dependence and validation. SHAP rankings are not automatically biochemical mechanisms, causal structural determinants, selectivity explanations, or proof of inhibitor binding. Keep language aligned to the supporting evidence.
+
+### Operational change for future assessments
+
+When a user requests a research gap, **first test whether the published evidence supports a precise, consequential methodological limitation** alongside any biological/experimental uncertainty. Present the best-supported gap, not the most elaborate or apparently novel one. Explicitly distinguish **verified literature statements**, **author-proposed rationale**, and **our proposed, still-unverified extension**. State which earlier papers must be read before transferring the gap to a new project.
