@@ -1,6 +1,6 @@
 ---
 name: rgap-skills
-version: "1.3.0"
+version: "1.4.0"
 description: >-
   Evidence-first skill for discovering, testing, writing, and critically reviewing
   scientific research gaps and research justifications. Optimized for original
@@ -665,3 +665,47 @@ Explainable/interpretable ML provides *model-level attribution* conditional on d
 ### Operational change for future assessments
 
 When a user requests a research gap, **first test whether the published evidence supports a precise, consequential methodological limitation** alongside any biological/experimental uncertainty. Present the best-supported gap, not the most elaborate or apparently novel one. Explicitly distinguish **verified literature statements**, **author-proposed rationale**, and **our proposed, still-unverified extension**. State which earlier papers must be read before transferring the gap to a new project.
+
+## Evidence-led methodological opportunities: lessons from StackER
+
+**Principle:** A research opportunity can be constructed from a well-documented limitation of existing work without claiming that a particular technique has never been used. Do not infer a literature-wide absence from an author's selective citations or from an unsuccessful quick search. Re-read the exact prior papers contrasted in an Introduction, inspect their Methods, Results, limitations, and direct successors, and test whether the limitation still holds.
+
+### Five concrete opportunity routes
+
+| Opportunity | What to extract from prior literature | The question to test | Evidence needed before writing the gap |
+|---|---|---|---|
+| Experimental-data expansion | Number and source of experimentally labeled compounds; chemical and endpoint coverage; uncertainty or imbalance | Does adding well-curated, independent experimental evidence improve coverage, discrimination, potency estimates, or reliable applicability? | Distinct structures, provenance, consistency, diversity, endpoint definitions, and evidence that expansion changes the intended inference rather than merely inflating N |
+| Systematic comparison | Which algorithms, descriptors, encodings, and training setups were actually compared | Which representation–learner combinations work best under the *same scientifically appropriate* evaluation? | Comparable splits, tuning budgets, preprocessing, metrics, uncertainty, and appropriate baselines |
+| Classification versus regression | Whether earlier work predicts classes, continuous IC50/pIC50, ranks, or other endpoints | Does quantitative potency prediction provide useful information not supplied by an activity-class label? | Sufficient reliable continuous measurements, censoring policy, units and assays; a decision for which potency resolution matters |
+| Single model versus ensemble/stacking | Whether previous approaches rely on one model, homogeneous models, or mixed models | Does combining complementary predictions add measurable value over strong single-model baselines? | Matched test data, rigorous out-of-fold stacking, leakage control, ablation studies, model complexity and uncertainty |
+| Benchmarking against established work | Original model scope, test sets, code availability, reported metrics and evaluation constraints | Does the proposed approach improve performance *for the target use case*, and is that improvement robust? | Reproduced or fairly matched baseline, comparable datasets and endpoints, independent test or appropriate resampling, confidence intervals, failure-case analysis |
+
+**Important distinctions:**
+
+- “The earlier study used relatively few experimentally characterized compounds” is a **documented scope limitation**. “More data will improve prediction” is a **hypothesis**, not a result.
+- “The authors evaluated one algorithm” is a **study-specific observation**. It does not establish that the entire field lacks comparisons.
+- Classification and regression ask **different questions**: improved regression is useful only when trustworthy continuous potency labels exist and the decision needs quantitative potency. Do not claim classification is inherently inferior.
+- A single model can outperform stacking; algorithmic complexity is not itself evidence of a gap or a contribution.
+- A model benchmark is not automatically a biological discovery. Describe methodological contributions accurately, and do not demand an additional mechanistic question when the paper's justified aim is reliable prediction or improved decision support.
+
+### Mandatory trace-back procedure
+
+1. **Identify the reference study:** Name the specific earlier publication and the original model or experimental result.
+2. **Verify the baseline:** Read its Introduction, Methods, evaluation, results and limitations, not merely the newer paper's summary.
+3. **Record the exact restriction:** Dataset size and coverage, labels, descriptors, algorithms, validation scheme, metrics and task type.
+4. **Trace forward:** Search subsequent work to determine whether the restriction was already addressed or whether newer evidence weakens the claimed opportunity.
+5. **Convert limitation into a question:** State what measurable difference additional data, a representation comparison, a regression endpoint, an ensemble or a benchmark might make.
+6. **Design a fair test:** Specify matched conditions, strong baselines, uncertainty, leak-resistant evaluation and the negative outcome that would still be informative.
+7. **Write at the right claim level:** Name precisely *which studies* had the restriction; avoid “no study has ever” unless a dated, appropriately scoped literature search really supports it.
+
+### Worked literature-reading lesson: StackER (ERα/ERβ antagonists)
+
+Use the paper titled *“StackER: a novel SMILES-based stacked approach for the accelerated and efficient discovery of ERα and ERβ antagonists”* as a **reading example**, not as proof of a research gap for another target. Its rationale can be decomposed into: earlier estrogen-receptor antagonist classifiers; an opportunity to extend experimentally labeled datasets; more systematic comparisons of molecular fingerprints and machine-learning approaches; assessment of a stacked combination against single-model approaches; and benchmarking against a relevant established model. The question is whether these changes improve antagonist **classification** on relevant evaluation data. Continuous potency **regression** is a distinguishable subsequent research direction, contingent on usable concentration-response measurements. Verify the paper and the specific predecessor's original results before transferring numerical details or priority claims.
+
+**Writing pattern (adapt to evidence, never paste unverified):**
+
+> Earlier work established [specific predictive or experimental result] using [dataset and approach], but its evaluation was restricted to [verified scope]. This leaves uncertain whether [precise, decision-relevant performance or quantitative inference] would change under [data expansion, systematic comparison, continuous-label modeling, or combined predictors]. The present study therefore evaluates [matched comparison and endpoint] against [explicit baselines] using [relevant test design].
+
+**Anti-pattern:** “No one has combined regression, stacking, explainability and docking for target X; therefore this is a groundbreaking gap.” A collection of methods does not replace a referenced prior limitation, a concrete question or a fair benchmark.
+
+**Before a proposed gap is approved, require a concise evidence chain:** *named predecessor → verified result → documented limitation → subsequent-literature check → measurable opportunity → evaluation design → bounded contribution.*
