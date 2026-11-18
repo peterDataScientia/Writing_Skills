@@ -1,0 +1,8 @@
+Task,StartMonthIndex,DurationMonths,StartMonth,EndMonth
+Proposal development,0,2,Oct 2026,Nov 2026
+Literature review,0,5,Oct 2026,Feb 2027
+Dataset preparation and molecular representation,0,2,Oct 2026,Nov 2026
+QSAR model development and validation,1,2,Nov 2026,Dec 2026
+FDA-approved drug screening and prioritization,2,1,Dec 2026,Dec 2026
+Experimental validation,3,2,Jan 2027,Feb 2027
+"Data analysis, writing and submission",3,3,Jan 2027,Mar 2027
