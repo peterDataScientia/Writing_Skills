@@ -2,7 +2,7 @@
 name: scientific-research-problem
 description: Discover, formulate, verify, evaluate, write and defend scientific research problems using critical literature synthesis, contextual narrowing, evidence-based gap validation, significance and methodological alignment. Use for research ideas, novelty claims, proposal problem statements, research motivation and scientific rationale across disciplines.
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
 ---
 
 # Scientific Research Problem Formulation and Evaluation
@@ -62,6 +62,33 @@ Use Swales' territory/niche/contribution and Creswell's problem/prior studies/de
 
 ### 10. Review before delivery
 Test every arrow in the argument: does the previous evidence support the next claim? Flag missing links. Remove statistical decoration, causal overstatement, inflated novelty, unsupported generalisation and scope inflation. Verify references and distinguish proposed work from established results. Present a concise verdict and corrective actions; do not hide blockers.
+
+## Evidence-driven scientific argument construction (v1.1.0)
+
+Apply these six mandatory principles in FORMULATE, EVALUATE and WRITE, adapting them to the discipline, genre and requested length.
+
+1. **Progressive scientific reasoning.** Build each major transition from a supported premise to a justified inference. A narrowing in topic is not itself a justification. For every transition, identify the evidence, the inferential bridge and the boundary of the claim. Flag missing links rather than disguising them with fluent prose.
+2. **Paragraph dependency.** Before drafting, assign each paragraph a scientific function, incoming premise, main claim, supporting evidence, qualification and outgoing implication. Each paragraph should advance the argument; avoid repetition and unrelated textbook background. Strict linear dependency is not required when parallel arguments or another genre structure are more suitable.
+3. **Evidence functionality.** Assign each citation and statistic a purpose: context, magnitude, consequence, mechanism, intervention benefit, limitation, feasibility, uncertainty, comparative gap or methodological justification. Retain relevant evidence and verify population, endpoint, units, comparator and provenance. Do not turn association into causation or preliminary results into established facts.
+4. **Strategy evolution and problematisation.** Explain what previous approaches achieved, which limitation remains, and why an alternative is plausible. Challenge assumptions using evidence and compare alternatives. Distinguish clinical, biological, pharmacological, molecular and computational problems where relevant; do not presume every field has these layers.
+5. **Comparative gap construction.** Compare existing studies against the exact research question: population/system, target or phenomenon, endpoint, selection objective, method, validation and conclusions. Identify what remains unresolved, test whether direct prior work already answers it, and bound the gap to the evidence searched. A different method or target combination alone does not establish a worthwhile gap.
+6. **Methodological emergence.** Explain why the proposed method fits the unresolved question, the available data and the intended contribution. Do not introduce an algorithm as a solution before establishing the problem, except when the algorithm or method is itself the object of investigation.
+
+### Argument audit procedure
+
+For substantial introductions or problem statements, construct a compact map before writing or reviewing:
+
+| Paragraph/argument | Incoming premise | Claim and evidence | Inference and limitation | Outgoing implication |
+|---|---|---|---|---|
+
+Then audit each important transition as supported, qualified, missing or contradicted. Separately assess structural coherence and scientific evidence validity. A fluent transition cannot compensate for a missing scientific premise. When the user wants only a final draft, use the audit to guide the output and report material blockers separately. When reviewing, present the map and prioritised corrections. For shorter texts, compress the same logic rather than forcing a long introduction.
+
+### Worked example (load on demand)
+
+- [Original twelve-paragraph CDK introduction](examples/CDK_Introduction_v0.0.0.1.md): user-supplied working draft including references and editorial verification note.
+- [Annotated CDK worked case study](examples/CDK_Worked_Case_Study.md): paragraph dependency map, quantitative evidence audit, comparative gap matrix, verification priorities and transfer exercise.
+
+Study the example to learn evidence-driven argument construction, not to copy its clinical claims into other work. Its references and specific statistics are not independently validated by inclusion here. The original draft is preserved separately from the analytical commentary. Use the example only when useful; do not force its twelve-paragraph sequence or clinical framing onto other research disciplines.
 
 ## Output contracts
 DISCOVER: candidate problems, supporting and contrary evidence, gap status, significance, feasibility, next verification needs.
